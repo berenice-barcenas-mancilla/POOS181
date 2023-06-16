@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template,request
 from flask_mysqldb import MySQL
 
 #INICIALIZACION DEL APP
@@ -12,10 +12,17 @@ mysql=MySQL(app)
 app=Flask(__name__)
 @app.route('/')
 def index():
-    return "Hola Mundo FLASK"
+    return render_template('index.html');
 
-@app.route('/guardar')
+#ruta http:localhost:5000/guardar - tipo POST para Insert
+@app.route('/guardar', methods=['POST'])
 def guardar():
+    if request.method == 'POST':
+        titulo=request.form['txtTitulo']
+        artista=request.form['txtArtista']
+        anio=request.form['txtAnio']
+        print(titulo,artista,anio)
+        
     return "Se guardo en la BD"
 
 @app.route('/eliminar')
