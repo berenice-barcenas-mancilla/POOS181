@@ -1,29 +1,33 @@
-from flask import Flask, render_template,request
+from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_mysqldb import MySQL
-
 #INICIALIZACION DEL APP
-app=Flask(__name__)
-app.config['MYSQL_HOST']='localhost'
-app.config['MYSQL_USER']='root'
-app.config['MYSQL_PASSWORD']=''
-app.config['MYSQL_DB']='dbflask'
-mysql=MySQL(app)
+app = Flask(__name__)
+app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_USER'] = 'root'
+app.config['MYSQL_PASSWORD'] = ''
+app.config['MYSQL_DB'] = 'bdflask'
+app.secret_key='mysecretkey'
+mysql = MySQL(app)
 
-app=Flask(__name__)
 @app.route('/')
 def index():
-    return render_template('index.html');
+    return render_template('index.html')
 
 #ruta http:localhost:5000/guardar - tipo POST para Insert
 @app.route('/guardar', methods=['POST'])
 def guardar():
-    if request.method == 'POST':
+    if request.method == 'POST':  #se pasa a variables el contenido de los input
         titulo=request.form['txtTitulo']
         artista=request.form['txtArtista']
         anio=request.form['txtAnio']
-        print(titulo,artista,anio)
+        #print(titulo,artista,anio)
         
-    return "Se guardo en la BD"
+        #se conecta y ejecuta el insert
+        CS = mysql.connection.cursor()
+        CS.execute('INSERT INTO albums (titulo,artista,anio) VALUES(%s,%s,%s)',(titulo,artista,anio))#se prepara la sentencia de insert para ingresar
+        mysql.connection.commit() #se ejecuta el insert 
+    flash('El album fue agregado correctamente')
+    return redirect(url_for('index'))
 
 @app.route('/eliminar')
 def eliminar():
@@ -32,3 +36,6 @@ def eliminar():
 #ejecutar el servidor 
 if __name__=='__main__':
     app.run(port=5000)
+
+
+

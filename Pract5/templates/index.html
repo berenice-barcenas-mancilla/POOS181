@@ -9,10 +9,18 @@
     <br><br><br>
     <h1>Gestion de albums</h1>
     <br><br><br>
-    <form action="/guardar" method="post">
-        <input type="text" name="txtTitulo" placeholder="Escribe el titulo">
+    {%with mensajes=get_flashed_messages()%}
+        {% if mensajes %}
+            {% for msj in mensajes %}
+                <h3>{{msj}}</h3>
+            {%endfor%}
+        {%endif%}
+    {%endwith%}
+    <form action="/guardar" method="post"> 
+        <input type="text" name="txtTitulo" placeholder="Escribe el titulo">  
         <input type="text" name="txtArtista" placeholder="Escribe el artista">
         <input type="number" name="txtAnio" placeholder="Escribe el año">
+
         <button type="submit">Guardar</button>
     </form>
 </body>
