@@ -11,7 +11,12 @@ mysql = MySQL(app)
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    #creamos un cursor y le decimos que ejecute la consulta para traer todos los albums y que los guarde en QueryAlbums
+    #con la funcion fetchall y los imprimimos en la consola por el momento
+    cursor = mysql.connection.cursor()
+    cursor.execute("SELECT * FROM albums")
+    QueryAlbums = cursor.fetchall()
+    return render_template('index.html', listAlbums=QueryAlbums)
 
 #ruta http:localhost:5000/guardar - tipo POST para Insert
 @app.route('/guardar', methods=['POST'])
