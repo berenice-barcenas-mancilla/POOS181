@@ -37,17 +37,23 @@ def guardar():
 #ruta con parametros para editar o actualizar datos
 @app.route('/editar/<id>')
 def editar(id):
-    edit=mysql.connection.cursor()
-    edit.execute('SELECT * FROM albums where id=%s',(id,))
-    consulId=edit.fetchone()
+    et=mysql.connection.cursor()
+    et.execute('SELECT * FROM albums where id=%s',(id,))
+    consulId=et.fetchone()
     print(consulId)
-    flash('El album fue actualizado correctamente')
     return render_template('editarAlbum.html', album=consulId)
-    
+
 @app.route('/update/<id>', methods=['POST'])
 def update(id):
-    return "Se elimino en el BD"
-
+    if request.method == "POST":
+        varTitulo=request.form['txtTitulo']
+        varArtist=request.form['txtArtista']
+        varAnio=request.form['txtAnio']
+        actualizar=mysql.connection.cursor()
+        actualizar.execute('UPDATE albums SET titulo=%s, artista=%s, anio=%s WHERE id=%s',(varTitulo, varArtist, varAnio, id))
+        mysql.connection.commit()
+        flash('Se actualizo el Album'+varTitulo)
+    return redirect(url_for('index'))
 
 
 

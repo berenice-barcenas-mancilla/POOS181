@@ -6,19 +6,13 @@
     <title>Editar Album</title>
 </head>
 <body>
-    {%with mensajes=get_flashed_messages()%}
-        {% if mensajes %}
-            {% for msj in mensajes %}
-                <h3>{{msj}}</h3>
-            {%endfor%}
-        {%endif%}
-    {%endwith%}
+    
     <h1>Album a editar</h1>
     <br><br><br><br>
-    <form action="#" method="post">
-        <input type="text" name="txtTitulo" placeholder="Escribe el titulo" value="{{album.0.1}}">
-        <input type="text" name="txtArtista" placeholder="Escribe el artista" value="{{album.0.2}}">
-        <input type="number" name="txtAnio" placeholder="Escribe el año" value="{{album.0.3}}">
+    <form action="/editar{{album[0]}}" method="POST">
+        <input type="text" name="txtTitulo" placeholder="Escribe el titulo" value="{{album[1]}}">
+        <input type="text" name="txtArtista" placeholder="Escribe el artista" value="{{album[2]}}">
+        <input type="number" name="txtAnio" placeholder="Escribe el año" value="{{album[3]}}">
         <button type="submit">Actualizar</button>
     </form>
     
