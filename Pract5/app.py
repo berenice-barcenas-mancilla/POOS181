@@ -35,26 +35,49 @@ def guardar():
     return redirect(url_for('index'))
 
 #ruta con parametros para editar o actualizar datos
-@app.route('/editar/<id>')
-def editar(id):
-    et=mysql.connection.cursor()
-    et.execute('SELECT * FROM albums where id=%s',(id,))
-    consulId=et.fetchone()
-    print(consulId)
-    return render_template('editarAlbum.html', album=consulId)
+@app.route('/edit/<id>')
+def edit(id):
+    CS = mysql.connection.cursor()
+    CS.execute('Select * from albums where id = %s',(id,))
+    QueryId = CS.fetchone()
+    print (QueryId)
+    return render_template('editarAlbums.html',listId = QueryId)
 
 @app.route('/update/<id>', methods=['POST'])
 def update(id):
-    if request.method == "POST":
-        varTitulo=request.form['txtTitulo']
-        varArtist=request.form['txtArtista']
-        varAnio=request.form['txtAnio']
-        actualizar=mysql.connection.cursor()
-        actualizar.execute('UPDATE albums SET titulo=%s, artista=%s, anio=%s WHERE id=%s',(varTitulo, varArtist, varAnio, id))
+    if request.method == 'POST':
+        varTitulo = request.form['txtTitulo']
+        varArtista = request.form['txtArtista']
+        varAnio = request.form['txtAnio']
+        UpdCur = mysql.connection.cursor()
+        UpdCur.execute('Update tbalbums set titulo =%s, artista = %s, anio = %s where id = %s', (varTitulo, varArtista, varAnio, id))
         mysql.connection.commit()
-        flash('Se actualizo el Album'+varTitulo)
+    flash('El album fue actualizado correctamente')
     return redirect(url_for('index'))
 
+
+@app.route('/eliminar/<id>')
+def eliminar(id):
+    elics = mysql.connection.cursor()
+    elics.execute('Select * from albums where id = %s',(id,))
+    QueryId = elics.fetchone()
+    print (QueryId)
+    return render_template('eliminarAlbum.html',listIdDelete = QueryId)
+
+@app.route('/delete/<id>', methods=['POST'])
+def delete(id):
+    if request.method == 'POST':
+        if request.form.get('action') == 'delete':
+            varTitulo = request.form['txtTitulo']
+            varArtista = request.form['txtArtista']
+            varAnio = request.form['txtAnio']
+            eli = mysql.connection.cursor()
+            eli.execute('DELETE FROM albums where id = %s', (id,))
+            mysql.connection.commit()
+            flash('El album ha sido eliminado exitosamente')
+        elif request.form.get('action') == 'cancel':
+            flash('Eliminacion cancelada')
+    return redirect(url_for('index'))
 
 
 #ejecutar el servidor 

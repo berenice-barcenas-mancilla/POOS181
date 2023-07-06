@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Eliminar Albums</title>
+</head>
+<body>
+    <br>
+    <br>
+    <h1>Album a Eliminar</h1>
+    <br>
+    <form action="/delete/{{listIdDelete[0]}}" method="POST">
+        <input type="text" name="txtTitulo" value="{{listIdDelete[1]}}">
+        <input type="text" name="txtArtista" value="{{listIdDelete[2]}}">
+        <p>Deseas Eliminar el Album?</p>
+        <input type="number" name="txtAnio" value="{{listIdDelete[3]}}">
+        <button type="submit" name="action" value="delete">Eliminar</button>
+        <button type="submit" name="action" value="cancel">Cancelar</button>
+    </form>
+    <br>
+</body>
+</html>

@@ -9,10 +9,10 @@
     
     <h1>Album a editar</h1>
     <br><br><br><br>
-    <form action="/editar{{album[0]}}" method="POST">
-        <input type="text" name="txtTitulo" placeholder="Escribe el titulo" value="{{album[1]}}">
-        <input type="text" name="txtArtista" placeholder="Escribe el artista" value="{{album[2]}}">
-        <input type="number" name="txtAnio" placeholder="Escribe el año" value="{{album[3]}}">
+    <form action="/update/{{listId[0]}}" method="POST">
+        <input type="text" name="txtTitulo" placeholder="Escribe el titulo" value="{{listId[1]}}">
+        <input type="text" name="txtArtista" placeholder="Escribe el artista" value="{{listId[2]}}">
+        <input type="number" name="txtAnio" placeholder="Escribe el año" value="{{listId[3]}}">
         <button type="submit">Actualizar</button>
     </form>
     
