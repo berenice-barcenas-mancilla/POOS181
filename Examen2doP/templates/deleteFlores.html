@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eliminar Flor</title>
+</head>
+<body>
+    <br>
+    <br>
+    <h1>Flor a Eliminar</h1>
+    <br>
+    <br>
+    <br>
+    <form action="/delete/{{listIdDlt[0]}}" method="POST">
+        <input      type="text"     name="txtnombre"        value="{{listIdDlt[1]}}" readonly >
+        <input      type="text"     name="txtcantidad"      value="{{listIdDlt[2]}}" readonly >
+        <input      type="number"   name="txtprecio"        value="{{listIdDlt[3]}}" readonly >
+
+        <p>Estas seguro de que deseas eliminar esta flor?</p>
+
+        <br>
+        <br>
+        <button     type="submit"   name="action"   value="delete">Confirmar</button>
+        <button     type="submit"   name="action"   value="cancel">Cancelar</button>
+    </form>
+
+    <br>
+   
+</body>
+</html>

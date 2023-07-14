@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Flores</title>
+</head>
+
+<body>
+    <br><br><br>
+    <h1>Registrar Flores </h1>
+    <br><br><br>
+    {%with mensajes=get_flashed_messages()%}
+        {% if mensajes %}
+            {% for msj in mensajes %}
+                <h3>{{msj}}</h3>
+            {%endfor%}
+        {%endif%}
+    {%endwith%}
+
+    <form action="/guardar" method="post">
+        <input type="text" name="txtnombre" placeholder="Escribe el nombre de la flor" required>
+        <input type="number" name="txtcantidad" placeholder="Escribe la cantidad" required minlength="1">
+        <input type="text" name="txtprecio" placeholder="Escribe el precio" required minlength="1">
+        <button type="submit">Guardar</button>
+    </form>
+
+    <form action="/flores" method="GET">
+        <button type="submit">Ver Flores</button>
+    </form>
+</body>
+
+</html>
