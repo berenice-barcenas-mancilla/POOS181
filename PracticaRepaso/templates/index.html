@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fruteria Insertar</title>
+</head>
+
+<body>
+    <br><br>
+    <h1>Fruteria</h1>
+    <br>
+    {% with mensajes = get_flashed_messages() %}
+        {% if mensajes %}
+            {% for msj in mensajes %}
+                <h3> {{msj}} </h3>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <br><br>
+    <h3>Registro de Frutas</h3>
+    <form action="/guardar" method="POST">
+
+        <input  type="text"      name="txtfruta"        placeholder="Escribe el nombre de la fruta">
+        <input  type="text"      name="txttemporada"    placeholder="Escribe de que temporada es la fruta">
+        <input  type="number"    name="txtprecio"       placeholder="Escribe el precio">
+        <input  type="number"    name="txtstock"        placeholder="Escribe el stock">
+        <button type="submit">Guardar</button>
+    </form>
+    <br><br><br>
+    <form action="/frutas" method="GET">
+        <button type="submit">Ver Frutas Registradas</button>
+    </form>
+    <br><br><br>
+    <form action="/filtrar" method="POST">
+        <button type="submit">Filtrar Fruta</button>
+    </form>
+    
+
+
+   
+</body>
+
+</html>

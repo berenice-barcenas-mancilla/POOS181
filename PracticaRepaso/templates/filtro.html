@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Filtrar Fruta</title>
+</head>
+<body>
+    <h1>Filtrar Fruta</h1>
+    <form action="/filtrar" method="POST">
+        <label for="fruta">Nombre de la Fruta:</label>
+        <input type="text" id="fruta" name="fruta">
+        <button type="submit">Buscar</button>
+    </form>
+
+    <br>
+    <br>
+    <h1>Resultados de la búsqueda</h1>
+
+    {% if frutas %}
+        <ul>
+            {% for fruta in frutas %}
+                <li>{{ fruta[1] }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No se encontraron frutas con ese nombre.</p>
+    {% endif %}
+</body>
+</html>

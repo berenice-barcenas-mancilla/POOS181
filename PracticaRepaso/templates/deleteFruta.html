@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eliminar Frutas</title>
+</head>
+<body>
+    <br>
+    <br>
+    <h1>Fruta a Eliminar</h1>
+    <br>
+    <form action="/delete/{{listIdDlt[0]}}" method="POST">
+        <input type="text" name="txtfruta"      value="{{listIdDlt[1]}}">
+        <input type="text" name="txttemporada"  value="{{listIdDlt[2]}}">
+        <input type="number" name="txtprecio"     value="{{listIdDlt[3]}}">
+        <input type="number" name="txtstock"      value="{{listIdDlt[4]}}">
+        <p>Estas seguro de que deseas eliminar la fruta?</p>
+        <button type="submit" name="action" value="delete">Confirmar</button>
+        <button type="submit" name="action" value="cancel">Cancelar</button>
+    </form>
+
+    <br>
+   
+</body>
+</html>
