@@ -41,7 +41,7 @@ def edit(id):
     CS.execute('Select * from albums where id = %s',(id,))
     QueryId = CS.fetchone()
     print (QueryId)
-    return render_template('editarAlbums.html',listId = QueryId)
+    return render_template('editarAlbums.html', listId = QueryId)
 
 @app.route('/update/<id>', methods=['POST'])
 def update(id):
