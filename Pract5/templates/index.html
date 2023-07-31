@@ -1,52 +1,88 @@
 {%extends 'plantilla.html'%}
 {% block body%}
 
+    <div class="mt-5 mb-5 ">
+        <h1 class="display-1 text-center">Gestion de albums</h1>
+    </div>
+   
 
-    <br><br><br>
-    <h1>Gestion de albums</h1>
-    <br><br><br>
     {%with mensajes=get_flashed_messages()%}
-    {% if mensajes %}
-    {% for msj in mensajes %}
-    <h3>{{msj}}</h3>
-    {%endfor%}
-    {%endif%}
+        {% if mensajes %}
+            {% for msj in mensajes %}
+                <h3>{{msj}}</h3>
+            {%endfor%}
+        {%endif%}
     {%endwith%}
-    <form action="/guardar" method="post">
-        <input type="text" name="txtTitulo" placeholder="Escribe el titulo">
-        <input type="text" name="txtArtista" placeholder="Escribe el artista">
-        <input type="number" name="txtAnio" placeholder="Escribe el año">
-        <button type="submit">Guardar</button>
-    </form>
+    <div class="container">
+    
+        <div class="row">
+            <div class="col-md-5">
+                <div class="card">
+                    <div class="card-body">
 
-    <h1>Albums guardados</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>Id:</th>
-                <th>Album:</th>
-                <th>Artista:</th>
-                <th>Año de publicación:</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for album in listAlbums %}
-                <tr>
-                    <td>{{ album[0] }}</td>
-                    <td>{{ album[1] }}</td>
-                    <td>{{ album[2] }}</td>
-                    <td>{{ album[3] }}</td>
-                    <td>
-                        <a href="/edit/{{album[0]}}">Editar</a>
-                        <a href="/eliminar/{{album[0]}}">Borrar</a>
-                    </td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+                        <form class="row g-3" action="/guardar" method="post">
+                            <div class="col-md-8">
+                                <label for="validationServer01" class="form-label">Titulo</label>
+                                <input type="text" name="txtTitulo" class="form-control " required placeholder="Ingresa el titulo del album">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="validationServer02" class="form-label">Artista</label>
+                                <input type="text" name="txtArtista" class="form-control " placeholder="Ingresa el artista" required>
+                            </div>
+                            
+                            <div class="col-md-8">
+                                <label for="validationServer03" class="form-label">Año de lanzamiento</label>
+                                <input type="text" name="txtAnio" class="form-control "  placeholder="Ingresa el año de publicacion" required>
+                            </div>
+                        
+                        
+                            <div class="d-grid gap-2">
+                                <button class="btn btn-warning text-light" type="submit">Guardar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
 
-    <div class="alert alert-danger" role="alert">
-        Berenice Barcenas Mancilla S181
+            <div class="col-md-7">
+                <div class="card mb-5">
+                    <div class="card-body">
+                        <h3  class="text-center">Albums guardados</h3>
+                        <table  class="table table-striped ">
+                            <thead>
+                                <tr>
+                                    <th>Id:</th>
+                                    <th>Album:</th>
+                                    <th>Artista:</th>
+                                    <th>Año de publicación:</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for album in listAlbums %}
+                                    <tr>
+                                        <td>{{ album[0] }}</td>
+                                        <td>{{ album[1] }}</td>
+                                        <td>{{ album[2] }}</td>
+                                        <td>{{ album[3] }}</td>
+                                        <td>
+                                            <a href="/edit/{{album[0]}}" class="btn btn-success text-light"><i class="bi bi-pencil-square"></i></a>
+                                            <a href="/eliminar/{{album[0]}}"  class="btn btn-danger text-light"><i class="bi bi-trash3-fill"></i></a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="alert alert-danger" role="alert">
+            Berenice Barcenas Mancilla S181
+        </div>
+         
     </div>
 {% endblock %}
