@@ -6,15 +6,19 @@
     </div>
    
 
-    {%with mensajes=get_flashed_messages()%}
-        {% if mensajes %}
-            {% for msj in mensajes %}
-                <h3>{{msj}}</h3>
-            {%endfor%}
-        {%endif%}
-    {%endwith%}
     <div class="container">
-    
+        
+        {%with mensajes=get_flashed_messages()%}
+            {% if mensajes %}
+                {% for msj in mensajes %}
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <strong>{{msj}}</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {%endfor%}
+            {%endif%}
+        {%endwith%}
+
         <div class="row  ">
             <div class="col-md-5 justify-content-center ">
                 <div class="card">
@@ -79,10 +83,5 @@
                 </div>
             </div>
         </div>
-
-        <div class="alert alert-warning" role="alert">
-            Berenice Barcenas Mancilla S181
-        </div>
-         
     </div>
 {% endblock %}
