@@ -15,6 +15,15 @@
                         <strong>{{msj}}</strong>
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
+                    <script>
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Good Job!',
+                            text: '{{ msj }}',
+                            confirmButtonText: 'Aceptar'
+                        });
+                       
+                    </script>
                 {%endfor%}
             {%endif%}
         {%endwith%}
