@@ -41,7 +41,7 @@ def edit(id):
     CS.execute('Select * from albums where id = %s',(id,))
     QueryId = CS.fetchone()
     print (QueryId)
-    return render_template('editarAlbums.html', listId = QueryId)
+    return render_template('editarAlbum.html', listId = QueryId)
 
 @app.route('/update/<id>', methods=['POST'])
 def update(id):
@@ -50,7 +50,7 @@ def update(id):
         varArtista = request.form['txtArtista']
         varAnio = request.form['txtAnio']
         UpdCur = mysql.connection.cursor()
-        UpdCur.execute('Update tbalbums set titulo =%s, artista = %s, anio = %s where id = %s', (varTitulo, varArtista, varAnio, id))
+        UpdCur.execute('Update albums set titulo =%s, artista = %s, anio = %s where id = %s', (varTitulo, varArtista, varAnio, id))
         mysql.connection.commit()
     flash('El album fue actualizado correctamente')
     return redirect(url_for('index'))
