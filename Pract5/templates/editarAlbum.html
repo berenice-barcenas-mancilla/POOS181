@@ -4,32 +4,34 @@
     <div class="mt-5 mb-5 ">
         <h1 class="display-1 text-center">Album a editar</h1>
     </div>
-    <div class="row">
-        <div class="col-md-10">
-            <div class="card">
-                <div class="card-body">
-                    <form class="row g-3" action="/update/{{listId[0]}}" method="POST">
-                        <div class="col-md-8">
-                            <label for="validationServer01" class="form-label">Titulo</label>
-                            <input type="text" class="form-control " name="txtTitulo" placeholder="Escribe el titulo" value="{{listId[1]}}" required>
-                        </div>
-                        <div class="col-md-4">
-                            <label for="validationServer02" class="form-label">Artista</label>
-                            <input type="text" class="form-control " name="txtArtista" placeholder="Escribe el artista" value="{{listId[2]}}" required>
-                        </div>
-                        <div class="col-md-8">
-                            <label for="validationServer03" class="form-label">Año de lanzamiento</label>
-                            <input type="number"  class="form-control " name="txtAnio" placeholder="Escribe el año" value="{{listId[3]}}" required >
-                        </div>
-                        <div class="d-grid gap-2">
-                            <button   class="btn btn-warning text-light"  type="submit">Actualizar</button>
-                        </div>
-                        
-                    </form>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 mx-auto">
+                <div class="card">
+                    <div class="card-body">
+                        <form class="row g-3" action="/update/{{listId[0]}}" method="POST">
+                            <div class="col-md-8">
+                                <label for="validationServer01" class="form-label">Titulo</label>
+                                <input type="text" class="form-control" name="txtTitulo" placeholder="Escribe el titulo" value="{{listId[1]}}" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="validationServer02" class="form-label">Artista</label>
+                                <input type="text" class="form-control" name="txtArtista" placeholder="Escribe el artista" value="{{listId[2]}}" required>
+                            </div>
+                            <div class="col-md-8">
+                                <label for="validationServer03" class="form-label">Año de lanzamiento</label>
+                                <input type="number" class="form-control" name="txtAnio" placeholder="Escribe el año" value="{{listId[3]}}" required>
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-warning text-light" type="submit">Actualizar</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>    
+    </div>
+    
    
         
 {% endblock %}
